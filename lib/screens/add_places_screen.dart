@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:great_places/Widgets/image_input.dart';
 import 'package:great_places/Widgets/location_input.dart';
+import 'package:great_places/models/place.dart';
 import 'package:great_places/providers/user_places.dart';
-import 'package:great_places/screens/places_list_screen.dart';
 import 'package:provider/provider.dart';
 
 class AddPlaceScreen extends StatefulWidget {
@@ -17,17 +17,25 @@ class AddPlaceScreen extends StatefulWidget {
 class _AddPlaceScreenState extends State<AddPlaceScreen> {
   final _titlecontroller = TextEditingController();
   late File _pickedImage;
+  PlaceLocation ? _pickedlocation;
 
   void _selectImage(File pickedImage) {
     _pickedImage = pickedImage;
   }
 
+  //passimg the data in add place
+  void _selectPlace(double lat, double lng) {
+    _pickedlocation = PlaceLocation(latitudes: lat, longitudes: lng);
+  }
+
   void _savePlace() {
-    if (_titlecontroller.text.isEmpty || _pickedImage == null) {
+    if (_titlecontroller.text.isEmpty ||
+        _pickedImage == null ||
+        _pickedlocation == null) {
       return;
     }
     Provider.of<UserPlaces>(context, listen: false)
-        .addPlaces(_titlecontroller.text, _pickedImage);
+        .addPlaces(_titlecontroller.text, _pickedImage, );
     Navigator.of(context).pop();
   }
 
@@ -55,9 +63,10 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       height: 10,
                     ),
                     ImageInput(_selectImage),
-                    SizedBox(height: 30,),
-                    LocationInput()
-                    // FlatButton(onPressed: onPressed, child: child)
+                    SizedBox(
+                      height: 30,
+                    ),
+                    LocationInput(onSelectPlace: _selectPlace),
                   ],
                 ),
               ),
@@ -71,7 +80,6 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
             icon: Icon(Icons.add),
             label: Text('Add Place'),
           ),
-
         ],
       ),
     );

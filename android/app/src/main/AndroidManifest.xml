@@ -5,9 +5,12 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
 
    <application
+
         android:label="great_places"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyA09AZJsR_98VHYbSf6nFAdJ34CaLYhhGU"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

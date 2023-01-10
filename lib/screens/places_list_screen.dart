@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:great_places/providers/user_places.dart';
 import 'package:great_places/screens/add_places_screen.dart';
+import 'package:great_places/screens/place_detail_screen.dart';
 import 'package:provider/provider.dart';
 
 class PlacesListScreen extends StatelessWidget {
@@ -42,8 +43,12 @@ class PlacesListScreen extends StatelessWidget {
                                       FileImage(greatPlace.items[index].image),
                                 ),
                                 title: Text(greatPlace.items[index].title),
+                                //the reciever can be null so we used exclamation mark
+                                // subtitle: Text(greatPlace.items[index].location!.address!),
                                 onTap: () {
-//go to detail screen
+                                  Navigator.of(context).pushNamed(
+                                      PlaceDetailScreen.routename,
+                                      arguments: greatPlace.items[index].id);
                                 },
                               ),
                             ),

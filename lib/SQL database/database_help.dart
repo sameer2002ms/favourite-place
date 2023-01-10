@@ -10,7 +10,7 @@ class DatabaseHelp {
     return sql.openDatabase(path.join(dbPath, 'places.db'),
         onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE user_Places(id TEXT PRIMARY KEY, title TEXT, image )');
+          'CREATE TABLE user_Places(id TEXT PRIMARY KEY, title TEXT, image TEXT,)');
     }, version: 1);
   }
 
@@ -21,6 +21,6 @@ class DatabaseHelp {
 
   static Future<List<Map<String, dynamic>>> getData(String table) async {
     final db = await DatabaseHelp.database();
-   return db.query(table);
+    return db.query(table);
   }
 }
