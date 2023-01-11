@@ -17,7 +17,7 @@ class AddPlaceScreen extends StatefulWidget {
 class _AddPlaceScreenState extends State<AddPlaceScreen> {
   final _titlecontroller = TextEditingController();
   late File _pickedImage;
-  PlaceLocation ? _pickedlocation;
+  PlaceLocation? _pickedlocation;
 
   void _selectImage(File pickedImage) {
     _pickedImage = pickedImage;
@@ -34,8 +34,10 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
         _pickedlocation == null) {
       return;
     }
-    Provider.of<UserPlaces>(context, listen: false)
-        .addPlaces(_titlecontroller.text, _pickedImage, );
+    Provider.of<UserPlaces>(context, listen: false).addPlaces(
+      _titlecontroller.text,
+      _pickedImage,
+    );
     Navigator.of(context).pop();
   }
 
@@ -56,11 +58,15 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                 child: Column(
                   children: <Widget>[
                     TextField(
-                      decoration: InputDecoration(labelText: 'Title'),
+                      decoration: InputDecoration(
+                          labelText: 'Name of the Place',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0)),
                       controller: _titlecontroller,
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 30,
                     ),
                     ImageInput(_selectImage),
                     SizedBox(
@@ -72,14 +78,26 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
               ),
             ),
           ),
-          RaisedButton.icon(
-            elevation: 0,
-            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            color: Theme.of(context).accentColor,
-            onPressed: _savePlace,
-            icon: Icon(Icons.add),
-            label: Text('Add Place'),
-          ),
+
+          Padding(
+            padding: const EdgeInsets.fromLTRB(80,0,80,160),
+            child: ElevatedButton.icon(
+              style: ButtonStyle(
+                
+              ),
+                icon: Icon(Icons.add),
+                label: Text('Take Picture'),
+                onPressed: _savePlace),
+          )
+
+          // RaisedButton.icon(
+          //   elevation: 0,
+          //   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          //   color: Theme.of(context).accentColor,
+          //   onPressed: _savePlace,
+          //   icon: Icon(Icons.add),
+          //   label: Text('Add Place'),
+          // ),
         ],
       ),
     );

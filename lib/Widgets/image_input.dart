@@ -20,11 +20,11 @@ class _ImageInputState extends State<ImageInput> {
   //here we have call the camera to take the pictures
   _takePicture() async {
     final picker = ImagePicker();
-    final imageFile = await picker.getImage(source: ImageSource.camera,
+    final imageFile = await picker.getImage(
+      source: ImageSource.camera,
       maxHeight: 600,
     );
-    if(imageFile == null)
-      return;
+    if (imageFile == null) return;
     setState(() {
       _storedImage = File(imageFile.path);
     });
@@ -38,33 +38,37 @@ class _ImageInputState extends State<ImageInput> {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        Container(
-          width: 100,
-          height: 100,
-          decoration:
-              BoxDecoration(border: Border.all(width: 2, color: Colors.green)),
-          child: _storedImage != null
-              ? Image.file(
-                  _storedImage!,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                )
-              : Text(
-                  'No Image Taken',
-                  textAlign: TextAlign.center,
+        Padding(
+          padding: const EdgeInsets.fromLTRB(10,0,0,0),
+          child: Container(
+            width: 100,
+            height: 100,
+            decoration:
+                BoxDecoration(
+                    border: Border.all(width: 3, color: Colors.amber)
                 ),
-          alignment: Alignment.center,
+            child: _storedImage != null
+                ? Image.file(
+                    _storedImage!,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                  )
+                : Text(
+                    'No Image Taken',
+                    textAlign: TextAlign.center,
+                  ),
+            alignment: Alignment.center,
+          ),
         ),
         SizedBox(
           width: 10,
         ),
-        Expanded(
-          child: FlatButton.icon(
-            icon: Icon(Icons.camera),
-            label: Text('Take Picture'),
-            textColor: Theme.of(context).primaryColor,
-            onPressed: _takePicture
-          ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(80,0,0,0),
+          child: ElevatedButton.icon(
+              icon: Icon(Icons.camera),
+              label: Text('Take Picture'),
+              onPressed: _takePicture),
         )
       ],
     );

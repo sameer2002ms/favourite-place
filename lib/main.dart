@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.amber,
           primarySwatch: Colors.amber,
         ),
-        home:  PlacesListScreen(),
+        home: PlacesListScreen(),
         routes: {
           AddPlaceScreen.routename: (context) => AddPlaceScreen(),
           PlaceDetailScreen.routename: (context) => PlaceDetailScreen()
