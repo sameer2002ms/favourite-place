@@ -61,7 +61,8 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       decoration: InputDecoration(
                           labelText: 'Name of the Place',
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20)),
+                              borderRadius: BorderRadius.circular(20,
+                              )),
                           contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0)),
                       controller: _titlecontroller,
                     ),
@@ -78,26 +79,16 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
               ),
             ),
           ),
-
           Padding(
-            padding: const EdgeInsets.fromLTRB(80,0,80,160),
+            padding: const EdgeInsets.fromLTRB(110, 0, 110, 160),
             child: ElevatedButton.icon(
-              style: ButtonStyle(
-                
-              ),
+                style: ButtonStyle(
+                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)))),
                 icon: Icon(Icons.add),
-                label: Text('Take Picture'),
+                label: Text('Add Place'),
                 onPressed: _savePlace),
           )
-
-          // RaisedButton.icon(
-          //   elevation: 0,
-          //   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          //   color: Theme.of(context).accentColor,
-          //   onPressed: _savePlace,
-          //   icon: Icon(Icons.add),
-          //   label: Text('Add Place'),
-          // ),
         ],
       ),
     );

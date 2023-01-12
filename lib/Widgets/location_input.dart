@@ -66,11 +66,13 @@ class _LocationInputState extends State<LocationInput> {
           width: double.infinity,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            border: Border.all(width: 1, color: Colors.grey),
-          ),
+              shape: BoxShape.rectangle,
+              border: Border.all(width: 2, color: Colors.amber),
+              borderRadius: BorderRadius.circular(15)),
           child: _prewImageUrl == null
               ? Text(
                   'No location choosen',
+                  style: TextStyle(fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 )
               : Image.network(
@@ -81,20 +83,30 @@ class _LocationInputState extends State<LocationInput> {
         ),
         Row(
           children: <Widget>[
-            FlatButton.icon(
+            //buttons
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 10, 10, 0),
+              child: TextButton.icon(
+                  icon: Icon(
+                    Icons.location_on,
+                  ),
+                  label: Text(
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                    'Current Location',
+                  ),
+                  onPressed: _getCurrentUserlocation),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
+              child: TextButton.icon(
                 icon: Icon(
-                  Icons.location_on,
+                  Icons.map,
                 ),
-                label: Text('Current Location'),
-                textColor: Theme.of(context).primaryColor,
-                onPressed: _getCurrentUserlocation),
-            FlatButton.icon(
-              icon: Icon(
-                Icons.map,
+                label: Text(
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                    'Select on Map'),
+                onPressed: _selectOnMap,
               ),
-              label: Text('Select on Map'),
-              textColor: Theme.of(context).primaryColor,
-              onPressed: _selectOnMap,
             ),
           ],
         )

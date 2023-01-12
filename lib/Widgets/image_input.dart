@@ -39,18 +39,16 @@ class _ImageInputState extends State<ImageInput> {
     return Row(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.fromLTRB(10,0,0,0),
+          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
           child: Container(
             width: 100,
             height: 100,
-            decoration:
-                BoxDecoration(
-                    border: Border.all(width: 3, color: Colors.amber)
-                ),
+            decoration: BoxDecoration(
+                border: Border.all(width: 2, color: Colors.amber,)),
             child: _storedImage != null
                 ? Image.file(
                     _storedImage!,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                     width: double.infinity,
                   )
                 : Text(
@@ -64,8 +62,11 @@ class _ImageInputState extends State<ImageInput> {
           width: 10,
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(80,0,0,0),
+          padding: const EdgeInsets.fromLTRB(60, 0, 0, 0),
           child: ElevatedButton.icon(
+              style: ButtonStyle(
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)))),
               icon: Icon(Icons.camera),
               label: Text('Take Picture'),
               onPressed: _takePicture),
